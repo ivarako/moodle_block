@@ -2,8 +2,8 @@
 
 class block_ivas_block_renderer extends plugin_renderer_base {
     
-    public function get_mcontent($text, $action) {
-        $content = html_writer::start_tag('form', array('id'=>'ivasblock', 'method'=>'post', 'action'=>$action));
+    public function get_mcontent($text) {
+        $content = html_writer::start_tag('form', array('id'=>'ivasblock', 'method'=>'post', 'action'=>'#'));
         
         $content .=  html_writer::start_tag('div', array('class'=>'mstyle'));
         

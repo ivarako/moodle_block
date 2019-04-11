@@ -10,18 +10,20 @@ class block_ivas_block extends block_base {
     }
     
     public function get_content() {
-        if ($this->content !== null) {
+      if ($this->content !== null) {
             return $this->content;
         }
        
+        if(!empty($_POST["inputtext"])){
+            $data = $_POST["inputtext"];
+            $this->save_db_data($data);
+        }
+        
         $text = $this->get_db_data();        
         $renderer = $this->page->get_renderer('block_ivas_block');
         $this->content =  new stdClass();
-    
-       // $this->content->text = '<form id="ivasblock" method="post" action="'.$this->btn_action().'">';
-        $this->content->text .= $renderer->get_mcontent($text, $this->btn_action());
-       // $this->content->text .= '</form>';
-        
+        $this->content->text .= $renderer->get_mcontent($text);
+      
         return $this->content;
     }
     
@@ -45,14 +47,4 @@ class block_ivas_block extends block_base {
         $record->proba = $data;
         $DB->insert_record('block_ivas_block', $record);
     }
-
-    
-    public function btn_action(){
-        $data = $_POST["inputtext"];
-        
-        if($data != null){
-            $this->save_db_data($data);
-        }
-    }
-    
 }
