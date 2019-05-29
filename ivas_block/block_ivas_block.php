@@ -19,10 +19,11 @@ class block_ivas_block extends block_base {
             $this->save_db_data($data);
         }
         
-        $text = $this->get_db_data();        
+        $mtext = $this->get_db_data();        
         $renderer = $this->page->get_renderer('block_ivas_block');
         $this->content =  new stdClass();
-        $this->content->text .= $renderer->get_mcontent($text);
+		
+        $this->content->text = $renderer->get_mcontent($mtext);
       
         return $this->content;
     }
